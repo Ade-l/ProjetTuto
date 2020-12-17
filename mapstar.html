@@ -1,0 +1,1330 @@
+<html>
+  <head>
+    <title>Live Starlink Satellite Map</title>
+    <link
+      href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://satellitemap.space/css/all.css"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta
+      name="description"
+      content="Live view of SpaceX starlink satellite constellation plus history of movements."
+    />
+    <meta property="og:title" content="Starlink satellite tracker" />
+    <meta property="og:site_name" content="Starlink satellite tracker" />
+    <meta property="og:url" content="https://satellitemap.space" />
+    <meta
+      property="og:description"
+      content="Live view of SpaceX starlink satellite constellation plus history of movements."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://satellitemap.space/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <script
+      type="text/javascript"
+      src="https://satellitemap.space/js/lib/d3.v3.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://satellitemap.space/js/lib/topojson.v1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://satellitemap.space/js/lib/planetaryjs_pretty.js?5"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://satellitemap.space/js/lib/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://satellitemap.space/js/lib/geographiclib.min.js"
+    ></script>
+    <script
+      src="https://satellitemap.space/js/lib/plotly-cartesian-latest.min.js"
+      defer=""
+    ></script>
+
+    <!--link href="css/prism.css" rel="stylesheet"-->
+    <style>
+      input[type="checkbox"] {
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        transform: scale(1.5);
+      }
+
+      ul#magnitudes {
+        position: absolute;
+        top: 80px;
+        left: 30px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        z-index: 10;
+        font-size: 10px;
+        columns: 9;
+        -webkit-columns: 9;
+        -moz-columns: 9;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 1024px) {
+        ul#magnitudes {
+          /* display:none; */
+          columns: 4;
+          -webkit-columns: 4;
+          -moz-columns: 4;
+        }
+
+        .ui.menu .item {
+          padding: 0.83em 0.45em;
+        }
+      }
+    </style>
+
+    <style id="plotly.js-style-global"></style>
+  </head>
+  <body class="vsc-initialized">
+    <div class="ui fixed inverted large menu main-menu">
+      <div class="items">
+        <span class="item"><i class="globe icon"></i>starlink</span>
+        <a class="item minor active" href="/">map</a>
+        <a href="#" class="item minor open-modal" data-open="modal2"
+          ><!--span class='item'--><i class="settings icon"></i
+          ><!--/span--></a
+        >
+        <a class="item minor" href="/twitter.html">
+          <i class="twitter icon"></i
+          ><span class="hide-on-mobile">twitter</span>
+        </a>
+        <span class="spacer hide-on-mobile"></span>
+        <!--
+            <a class='item minor ' href='/download/'>
+              <i class='download icon'></i><span class='hide-on-mobile'>Download</span>
+            </a>
+            <a class='item minor active' href='/examples/'>
+              <i class='laptop icon'></i><span class='hide-on-mobile'>Examples</span>
+            </a>
+            <a class='item minor ' href='/documentation/'>
+              <i class='book icon'></i><span class='hide-on-mobile'>Documentation</span>
+            </a>
+            <a class='item minor' href='https://github.com/BinaryMuse/planetary.js'
+              onclick="_gaq.push(['_trackPageview', '/redirect-to-github-project-page']);">
+              <i class='github alternate icon'></i><span class='hide-on-mobile'>Fork on GitHub</span>
+            </a>
+            -->
+      </div>
+    </div>
+
+    <div id="showing_on" hidden="hidden">
+      <h1>Showing [<a href="" onclick="return tog_showing();">-</a>]</h1>
+      <ul id="magnitudes">
+        <li class="goodsat">1-D</li>
+        <li class="oldsat">1-F</li>
+        <li class="goodsat">1-Q</li>
+        <li class="goodsat">1-T</li>
+        <li class="oldsat">1-Y</li>
+        <li class="oldsat">1-AK</li>
+        <li class="oldsat">1-AQ</li>
+        <li class="oldsat">1-AS</li>
+        <li class="oldsat">1-AW</li>
+        <li class="oldsat">1-AY</li>
+        <li class="oldsat">1-AZ</li>
+        <li class="oldsat">1-BD</li>
+        <li class="oldsat">1-BE</li>
+        <li class="goodsat">1-BG</li>
+        <li class="goodsat">2-A</li>
+        <li class="goodsat">2-B</li>
+        <li class="goodsat">2-C</li>
+        <li class="goodsat">2-D</li>
+        <li class="goodsat">2-E</li>
+        <li class="goodsat">2-F</li>
+        <li class="goodsat">2-G</li>
+        <li class="goodsat">2-H</li>
+        <li class="goodsat">2-J</li>
+        <li class="goodsat">2-K</li>
+        <li class="goodsat">2-L</li>
+        <li class="goodsat">2-M</li>
+        <li class="goodsat">2-N</li>
+        <li class="goodsat">2-P</li>
+        <li class="goodsat">2-Q</li>
+        <li class="goodsat">2-R</li>
+        <li class="goodsat">2-S</li>
+        <li class="goodsat">2-T</li>
+        <li class="goodsat">2-U</li>
+        <li class="goodsat">2-V</li>
+        <li class="goodsat">2-W</li>
+        <li class="goodsat">2-X</li>
+        <li class="goodsat">2-Y</li>
+        <li class="goodsat">2-Z</li>
+        <li class="goodsat">2-AA</li>
+        <li class="goodsat">2-AB</li>
+        <li class="goodsat">2-AC</li>
+        <li class="goodsat">2-AD</li>
+        <li class="goodsat">2-AE</li>
+        <li class="goodsat">2-AF</li>
+        <li class="goodsat">2-AG</li>
+        <li class="goodsat">2-AH</li>
+        <li class="goodsat">2-AK</li>
+        <li class="goodsat">2-AL</li>
+        <li class="goodsat">2-AM</li>
+        <li class="goodsat">2-AN</li>
+        <li class="oldsat">2-AP</li>
+        <li class="goodsat">2-AQ</li>
+        <li class="goodsat">2-AR</li>
+        <li class="goodsat">2-AS</li>
+        <li class="goodsat">2-AT</li>
+        <li class="goodsat">2-AU</li>
+        <li class="goodsat">2-AV</li>
+        <li class="goodsat">2-AW</li>
+        <li class="goodsat">2-AX</li>
+        <li class="goodsat">2-AY</li>
+        <li class="goodsat">2-AZ</li>
+        <li class="goodsat">2-BA</li>
+        <li class="goodsat">2-BB</li>
+        <li class="goodsat">2-BC</li>
+        <li class="goodsat">2-BD</li>
+        <li class="goodsat">2-BE</li>
+        <li class="goodsat">2-BF</li>
+        <li class="goodsat">2-BG</li>
+        <li class="goodsat">2-BH</li>
+        <li class="goodsat">2-BJ</li>
+        <li class="goodsat">2-BK</li>
+        <li class="goodsat">2-BL</li>
+        <li class="goodsat">2-BM</li>
+        <li class="goodsat">3-A</li>
+        <li class="goodsat">3-B</li>
+        <li class="goodsat">3-C</li>
+        <li class="goodsat">3-D</li>
+        <li class="goodsat">3-E</li>
+        <li class="goodsat">3-F</li>
+        <li class="goodsat">3-G</li>
+        <li class="goodsat">3-H</li>
+        <li class="goodsat">3-J</li>
+        <li class="goodsat">3-K</li>
+        <li class="goodsat">3-L</li>
+        <li class="goodsat">3-M</li>
+        <li class="goodsat">3-N</li>
+        <li class="goodsat">3-P</li>
+        <li class="goodsat">3-Q</li>
+        <li class="goodsat">3-R</li>
+        <li class="goodsat">3-S</li>
+        <li class="goodsat">3-T</li>
+        <li class="goodsat">3-U</li>
+        <li class="goodsat">3-V</li>
+        <li class="goodsat">3-W</li>
+        <li class="goodsat">3-X</li>
+        <li class="goodsat">3-Y</li>
+        <li class="goodsat">3-Z</li>
+        <li class="goodsat">3-AA</li>
+        <li class="goodsat">3-AB</li>
+        <li class="goodsat">3-AC</li>
+        <li class="goodsat">3-AD</li>
+        <li class="goodsat">3-AE</li>
+        <li class="goodsat">3-AF</li>
+        <li class="goodsat">3-AG</li>
+        <li class="goodsat">3-AH</li>
+        <li class="goodsat">3-AJ</li>
+        <li class="goodsat">3-AK</li>
+        <li class="goodsat">3-AM</li>
+        <li class="goodsat">3-AN</li>
+        <li class="goodsat">3-AP</li>
+        <li class="goodsat">3-AQ</li>
+        <li class="goodsat">3-AR</li>
+        <li class="goodsat">3-AS</li>
+        <li class="goodsat">3-AT</li>
+        <li class="goodsat">3-AU</li>
+        <li class="goodsat">3-AV</li>
+        <li class="goodsat">3-AW</li>
+        <li class="goodsat">3-AX</li>
+        <li class="goodsat">3-AZ</li>
+        <li class="goodsat">3-BA</li>
+        <li class="goodsat">3-BB</li>
+        <li class="goodsat">3-BC</li>
+        <li class="goodsat">3-BE</li>
+        <li class="goodsat">3-BF</li>
+        <li class="goodsat">3-BG</li>
+        <li class="goodsat">3-BH</li>
+        <li class="goodsat">3-BJ</li>
+        <li class="goodsat">3-BK</li>
+        <li class="goodsat">3-BL</li>
+        <li class="goodsat">3-BM</li>
+        <li class="goodsat">4-A</li>
+        <li class="goodsat">4-B</li>
+        <li class="goodsat">4-C</li>
+        <li class="goodsat">4-D</li>
+        <li class="goodsat">4-E</li>
+        <li class="goodsat">4-F</li>
+        <li class="goodsat">4-G</li>
+        <li class="goodsat">4-H</li>
+        <li class="goodsat">4-J</li>
+        <li class="goodsat">4-K</li>
+        <li class="goodsat">4-L</li>
+        <li class="goodsat">4-P</li>
+        <li class="goodsat">4-Q</li>
+        <li class="goodsat">4-R</li>
+        <li class="goodsat">4-S</li>
+        <li class="goodsat">4-T</li>
+        <li class="goodsat">4-U</li>
+        <li class="goodsat">4-V</li>
+        <li class="goodsat">4-W</li>
+        <li class="goodsat">4-X</li>
+        <li class="goodsat">4-Y</li>
+        <li class="goodsat">4-Z</li>
+        <li class="goodsat">4-AA</li>
+        <li class="goodsat">4-AB</li>
+        <li class="goodsat">4-AC</li>
+        <li class="goodsat">4-AD</li>
+        <li class="goodsat">4-AE</li>
+        <li class="goodsat">4-AF</li>
+        <li class="goodsat">4-AG</li>
+        <li class="goodsat">4-AH</li>
+        <li class="goodsat">4-AJ</li>
+        <li class="goodsat">4-AK</li>
+        <li class="goodsat">4-AL</li>
+        <li class="goodsat">4-AM</li>
+        <li class="goodsat">4-AN</li>
+        <li class="goodsat">4-AP</li>
+        <li class="goodsat">4-AQ</li>
+        <li class="goodsat">4-AR</li>
+        <li class="goodsat">4-AS</li>
+        <li class="goodsat">4-AT</li>
+        <li class="goodsat">4-AU</li>
+        <li class="goodsat">4-AV</li>
+        <li class="goodsat">4-AW</li>
+        <li class="goodsat">4-AX</li>
+        <li class="goodsat">4-AY</li>
+        <li class="goodsat">4-AZ</li>
+        <li class="goodsat">4-BA</li>
+        <li class="goodsat">4-BB</li>
+        <li class="goodsat">4-BC</li>
+        <li class="goodsat">4-BD</li>
+        <li class="goodsat">4-BE</li>
+        <li class="oldsat">4-BF</li>
+        <li class="goodsat">4-BG</li>
+        <li class="goodsat">4-BH</li>
+        <li class="goodsat">4-BJ</li>
+        <li class="goodsat">4-BK</li>
+        <li class="goodsat">4-BL</li>
+        <li class="goodsat">4-BM</li>
+        <li class="goodsat">5-A</li>
+        <li class="goodsat">5-B</li>
+        <li class="goodsat">5-C</li>
+        <li class="goodsat">5-D</li>
+        <li class="goodsat">5-E</li>
+        <li class="goodsat">5-F</li>
+        <li class="goodsat">5-G</li>
+        <li class="goodsat">5-H</li>
+        <li class="goodsat">5-J</li>
+        <li class="goodsat">5-K</li>
+        <li class="goodsat">5-L</li>
+        <li class="goodsat">5-M</li>
+        <li class="goodsat">5-N</li>
+        <li class="goodsat">5-P</li>
+        <li class="goodsat">5-Q</li>
+        <li class="goodsat">5-R</li>
+        <li class="goodsat">5-S</li>
+        <li class="goodsat">5-T</li>
+        <li class="goodsat">5-U</li>
+        <li class="goodsat">5-V</li>
+        <li class="goodsat">5-W</li>
+        <li class="goodsat">5-X</li>
+        <li class="goodsat">5-Y</li>
+        <li class="goodsat">5-Z</li>
+        <li class="goodsat">5-AA</li>
+        <li class="goodsat">5-AB</li>
+        <li class="goodsat">5-AC</li>
+        <li class="goodsat">5-AD</li>
+        <li class="goodsat">5-AE</li>
+        <li class="goodsat">5-AF</li>
+        <li class="goodsat">5-AG</li>
+        <li class="goodsat">5-AH</li>
+        <li class="goodsat">5-AJ</li>
+        <li class="goodsat">5-AL</li>
+        <li class="goodsat">5-AM</li>
+        <li class="goodsat">5-AN</li>
+        <li class="goodsat">5-AP</li>
+        <li class="goodsat">5-AQ</li>
+        <li class="goodsat">5-AR</li>
+        <li class="goodsat">5-AS</li>
+        <li class="goodsat">5-AT</li>
+        <li class="goodsat">5-AU</li>
+        <li class="goodsat">5-AV</li>
+        <li class="goodsat">5-AW</li>
+        <li class="goodsat">5-AX</li>
+        <li class="goodsat">5-AY</li>
+        <li class="goodsat">5-AZ</li>
+        <li class="goodsat">5-BA</li>
+        <li class="goodsat">5-BB</li>
+        <li class="goodsat">5-BC</li>
+        <li class="goodsat">5-BD</li>
+        <li class="goodsat">5-BE</li>
+        <li class="goodsat">5-BF</li>
+        <li class="goodsat">5-BG</li>
+        <li class="goodsat">5-BH</li>
+        <li class="goodsat">5-BJ</li>
+        <li class="goodsat">5-BK</li>
+        <li class="goodsat">5-BL</li>
+        <li class="goodsat">5-BM</li>
+        <li class="goodsat">6-A</li>
+        <li class="goodsat">6-B</li>
+        <li class="goodsat">6-C</li>
+        <li class="goodsat">6-E</li>
+        <li class="goodsat">6-F</li>
+        <li class="goodsat">6-G</li>
+        <li class="goodsat">6-H</li>
+        <li class="goodsat">6-J</li>
+        <li class="goodsat">6-K</li>
+        <li class="goodsat">6-L</li>
+        <li class="goodsat">6-M</li>
+        <li class="goodsat">6-N</li>
+        <li class="goodsat">6-P</li>
+        <li class="goodsat">6-Q</li>
+        <li class="goodsat">6-R</li>
+        <li class="goodsat">6-S</li>
+        <li class="goodsat">6-T</li>
+        <li class="goodsat">6-U</li>
+        <li class="goodsat">6-V</li>
+        <li class="goodsat">6-W</li>
+        <li class="goodsat">6-X</li>
+        <li class="goodsat">6-Y</li>
+        <li class="goodsat">6-Z</li>
+        <li class="goodsat">6-AA</li>
+        <li class="goodsat">6-AC</li>
+        <li class="goodsat">6-AD</li>
+        <li class="goodsat">6-AE</li>
+        <li class="goodsat">6-AF</li>
+        <li class="goodsat">6-AG</li>
+        <li class="goodsat">6-AH</li>
+        <li class="goodsat">6-AJ</li>
+        <li class="goodsat">6-AK</li>
+        <li class="goodsat">6-AL</li>
+        <li class="goodsat">6-AM</li>
+        <li class="goodsat">6-AN</li>
+        <li class="goodsat">6-AP</li>
+        <li class="goodsat">6-AQ</li>
+        <li class="goodsat">6-AR</li>
+        <li class="goodsat">6-AS</li>
+        <li class="goodsat">6-AT</li>
+        <li class="goodsat">6-AU</li>
+        <li class="goodsat">6-AV</li>
+        <li class="goodsat">6-AW</li>
+        <li class="goodsat">6-AX</li>
+        <li class="goodsat">6-AY</li>
+        <li class="goodsat">6-AZ</li>
+        <li class="goodsat">6-BA</li>
+        <li class="goodsat">6-BB</li>
+        <li class="goodsat">6-BC</li>
+        <li class="goodsat">6-BD</li>
+        <li class="goodsat">6-BE</li>
+        <li class="goodsat">6-BF</li>
+        <li class="goodsat">6-BG</li>
+        <li class="goodsat">6-BH</li>
+        <li class="goodsat">6-BJ</li>
+        <li class="goodsat">6-BK</li>
+        <li class="goodsat">6-BL</li>
+        <li class="goodsat">6-BM</li>
+        <li class="goodsat">7-K</li>
+        <li class="goodsat">7-L</li>
+        <li class="goodsat">7-M</li>
+        <li class="goodsat">7-N</li>
+        <li class="goodsat">7-P</li>
+        <li class="goodsat">7-Q</li>
+        <li class="goodsat">7-R</li>
+        <li class="goodsat">7-S</li>
+        <li class="goodsat">7-T</li>
+        <li class="goodsat">7-U</li>
+        <li class="goodsat">7-V</li>
+        <li class="goodsat">7-W</li>
+        <li class="goodsat">7-X</li>
+        <li class="goodsat">7-Y</li>
+        <li class="goodsat">7-Z</li>
+        <li class="goodsat">7-AA</li>
+        <li class="goodsat">7-AB</li>
+        <li class="goodsat">7-AC</li>
+        <li class="goodsat">7-AD</li>
+        <li class="goodsat">7-AE</li>
+        <li class="goodsat">7-AF</li>
+        <li class="oldsat">7-AG</li>
+        <li class="goodsat">7-AH</li>
+        <li class="goodsat">7-AJ</li>
+        <li class="goodsat">7-AK</li>
+        <li class="goodsat">7-AL</li>
+        <li class="goodsat">7-AM</li>
+        <li class="goodsat">7-AN</li>
+        <li class="goodsat">7-AP</li>
+        <li class="goodsat">7-AQ</li>
+        <li class="goodsat">7-AR</li>
+        <li class="goodsat">7-AS</li>
+        <li class="goodsat">7-AT</li>
+        <li class="goodsat">7-AU</li>
+        <li class="goodsat">7-AV</li>
+        <li class="goodsat">7-AW</li>
+        <li class="goodsat">7-AX</li>
+        <li class="goodsat">7-AY</li>
+        <li class="goodsat">7-AZ</li>
+        <li class="oldsat">7-BA</li>
+        <li class="goodsat">7-BB</li>
+        <li class="goodsat">7-BC</li>
+        <li class="goodsat">7-BD</li>
+        <li class="goodsat">7-BE</li>
+        <li class="goodsat">7-BF</li>
+        <li class="goodsat">7-BG</li>
+        <li class="goodsat">7-BH</li>
+        <li class="goodsat">7-BJ</li>
+        <li class="goodsat">7-BK</li>
+        <li class="goodsat">7-BL</li>
+        <li class="goodsat">7-BM</li>
+        <li class="goodsat">8-B</li>
+        <li class="goodsat">8-C</li>
+        <li class="goodsat">8-D</li>
+        <li class="goodsat">8-E</li>
+        <li class="goodsat">8-F</li>
+        <li class="goodsat">8-G</li>
+        <li class="oldsat">8-H</li>
+        <li class="goodsat">8-J</li>
+        <li class="goodsat">8-K</li>
+        <li class="goodsat">8-L</li>
+        <li class="goodsat">8-M</li>
+        <li class="goodsat">8-N</li>
+        <li class="goodsat">8-P</li>
+        <li class="goodsat">8-Q</li>
+        <li class="goodsat">8-R</li>
+        <li class="goodsat">8-S</li>
+        <li class="goodsat">8-T</li>
+        <li class="goodsat">8-U</li>
+        <li class="goodsat">8-V</li>
+        <li class="goodsat">8-W</li>
+        <li class="goodsat">8-X</li>
+        <li class="goodsat">8-Y</li>
+        <li class="goodsat">8-Z</li>
+        <li class="goodsat">8-AA</li>
+        <li class="goodsat">8-AB</li>
+        <li class="goodsat">8-AC</li>
+        <li class="goodsat">8-AD</li>
+        <li class="goodsat">8-AE</li>
+        <li class="goodsat">8-AF</li>
+        <li class="goodsat">8-AG</li>
+        <li class="goodsat">8-AH</li>
+        <li class="goodsat">8-AJ</li>
+        <li class="goodsat">8-AK</li>
+        <li class="goodsat">8-AL</li>
+        <li class="goodsat">8-AM</li>
+        <li class="goodsat">8-AN</li>
+        <li class="goodsat">8-AP</li>
+        <li class="goodsat">8-AQ</li>
+        <li class="goodsat">8-AR</li>
+        <li class="goodsat">8-AS</li>
+        <li class="goodsat">8-AT</li>
+        <li class="goodsat">8-AU</li>
+        <li class="goodsat">8-AV</li>
+        <li class="goodsat">8-AW</li>
+        <li class="goodsat">8-AX</li>
+        <li class="goodsat">8-AY</li>
+        <li class="goodsat">8-AZ</li>
+        <li class="goodsat">8-BA</li>
+        <li class="goodsat">8-BB</li>
+        <li class="goodsat">8-BC</li>
+        <li class="goodsat">8-BD</li>
+        <li class="goodsat">8-BE</li>
+        <li class="goodsat">8-BF</li>
+        <li class="goodsat">8-BG</li>
+        <li class="goodsat">8-BH</li>
+        <li class="goodsat">8-BJ</li>
+        <li class="goodsat">8-BK</li>
+        <li class="oldsat">8-BL</li>
+        <li class="oldsat">8-BM</li>
+        <li class="goodsat">9-A</li>
+        <li class="goodsat">9-B</li>
+        <li class="goodsat">9-C</li>
+        <li class="goodsat">9-D</li>
+        <li class="goodsat">9-E</li>
+        <li class="goodsat">9-F</li>
+        <li class="goodsat">9-G</li>
+        <li class="oldsat">9-H</li>
+        <li class="goodsat">9-J</li>
+        <li class="goodsat">9-K</li>
+        <li class="goodsat">9-L</li>
+        <li class="goodsat">9-M</li>
+        <li class="goodsat">9-N</li>
+        <li class="goodsat">9-P</li>
+        <li class="goodsat">9-Q</li>
+        <li class="goodsat">9-R</li>
+        <li class="goodsat">9-S</li>
+        <li class="goodsat">9-T</li>
+        <li class="goodsat">9-U</li>
+        <li class="oldsat">9-V</li>
+        <li class="goodsat">9-W</li>
+        <li class="goodsat">9-X</li>
+        <li class="oldsat">9-Y</li>
+        <li class="goodsat">9-Z</li>
+        <li class="goodsat">9-AA</li>
+        <li class="goodsat">9-AB</li>
+        <li class="goodsat">9-AC</li>
+        <li class="goodsat">9-AD</li>
+        <li class="goodsat">9-AE</li>
+        <li class="goodsat">9-AF</li>
+        <li class="goodsat">9-AG</li>
+        <li class="goodsat">9-AH</li>
+        <li class="goodsat">9-AJ</li>
+        <li class="goodsat">9-AK</li>
+        <li class="goodsat">9-AL</li>
+        <li class="goodsat">9-AM</li>
+        <li class="goodsat">9-AN</li>
+        <li class="goodsat">9-AP</li>
+        <li class="goodsat">9-AQ</li>
+        <li class="goodsat">9-AR</li>
+        <li class="goodsat">9-AS</li>
+        <li class="goodsat">9-AT</li>
+        <li class="goodsat">9-AU</li>
+        <li class="goodsat">9-AV</li>
+        <li class="goodsat">9-AW</li>
+        <li class="goodsat">9-AX</li>
+        <li class="goodsat">9-AY</li>
+        <li class="goodsat">9-AZ</li>
+        <li class="goodsat">9-BA</li>
+        <li class="goodsat">9-BB</li>
+        <li class="goodsat">9-BC</li>
+        <li class="goodsat">9-BD</li>
+        <li class="goodsat">9-BE</li>
+        <li class="goodsat">9-BF</li>
+        <li class="goodsat">9-BG</li>
+        <li class="goodsat">9-BH</li>
+        <li class="goodsat">9-BJ</li>
+        <li class="goodsat">9-BK</li>
+        <li class="goodsat">10-A</li>
+        <li class="goodsat">10-B</li>
+        <li class="goodsat">10-C</li>
+        <li class="goodsat">10-D</li>
+        <li class="goodsat">10-E</li>
+        <li class="goodsat">10-F</li>
+        <li class="goodsat">10-G</li>
+        <li class="goodsat">10-H</li>
+        <li class="goodsat">10-J</li>
+        <li class="goodsat">10-K</li>
+        <li class="goodsat">10-L</li>
+        <li class="goodsat">10-M</li>
+        <li class="goodsat">10-N</li>
+        <li class="goodsat">10-P</li>
+        <li class="goodsat">10-Q</li>
+        <li class="goodsat">10-R</li>
+        <li class="goodsat">10-S</li>
+        <li class="goodsat">10-T</li>
+        <li class="goodsat">10-U</li>
+        <li class="goodsat">10-V</li>
+        <li class="goodsat">10-W</li>
+        <li class="goodsat">10-X</li>
+        <li class="goodsat">10-Y</li>
+        <li class="goodsat">10-Z</li>
+        <li class="goodsat">10-AA</li>
+        <li class="goodsat">10-AB</li>
+        <li class="goodsat">10-AC</li>
+        <li class="goodsat">10-AD</li>
+        <li class="goodsat">10-AE</li>
+        <li class="goodsat">10-AF</li>
+        <li class="goodsat">10-AG</li>
+        <li class="goodsat">10-AH</li>
+        <li class="goodsat">10-AJ</li>
+        <li class="goodsat">10-AK</li>
+        <li class="goodsat">10-AL</li>
+        <li class="goodsat">10-AM</li>
+        <li class="goodsat">10-AN</li>
+        <li class="goodsat">10-AP</li>
+        <li class="goodsat">10-AQ</li>
+        <li class="goodsat">10-AR</li>
+        <li class="goodsat">10-AS</li>
+        <li class="goodsat">10-AT</li>
+        <li class="goodsat">10-AU</li>
+        <li class="goodsat">10-AV</li>
+        <li class="goodsat">10-AW</li>
+        <li class="goodsat">10-AX</li>
+        <li class="goodsat">10-AY</li>
+        <li class="goodsat">10-AZ</li>
+        <li class="goodsat">10-BA</li>
+        <li class="goodsat">10-BB</li>
+        <li class="goodsat">10-BC</li>
+        <li class="goodsat">10-BD</li>
+        <li class="goodsat">10-BE</li>
+        <li class="goodsat">10-BF</li>
+        <li class="goodsat">10-BG</li>
+        <li class="goodsat">10-BH</li>
+        <li class="goodsat">10-BJ</li>
+        <li class="goodsat">11-A</li>
+        <li class="goodsat">11-B</li>
+        <li class="goodsat">11-C</li>
+        <li class="goodsat">11-D</li>
+        <li class="goodsat">11-E</li>
+        <li class="oldsat">11-F</li>
+        <li class="oldsat">11-G</li>
+        <li class="oldsat">11-H</li>
+        <li class="goodsat">11-J</li>
+        <li class="goodsat">11-K</li>
+        <li class="goodsat">11-L</li>
+        <li class="oldsat">11-M</li>
+        <li class="oldsat">11-N</li>
+        <li class="oldsat">11-P</li>
+        <li class="goodsat">11-Q</li>
+        <li class="goodsat">11-R</li>
+        <li class="oldsat">11-S</li>
+        <li class="oldsat">11-T</li>
+        <li class="oldsat">11-U</li>
+        <li class="goodsat">11-V</li>
+        <li class="goodsat">11-W</li>
+        <li class="goodsat">11-X</li>
+        <li class="goodsat">11-Y</li>
+        <li class="oldsat">11-Z</li>
+        <li class="oldsat">11-AA</li>
+        <li class="goodsat">11-AB</li>
+        <li class="goodsat">11-AC</li>
+        <li class="goodsat">11-AD</li>
+        <li class="goodsat">11-AE</li>
+        <li class="goodsat">11-AF</li>
+        <li class="goodsat">11-AG</li>
+        <li class="goodsat">11-AH</li>
+        <li class="goodsat">11-AJ</li>
+        <li class="goodsat">11-AK</li>
+        <li class="goodsat">11-AL</li>
+        <li class="goodsat">11-AM</li>
+        <li class="goodsat">11-AN</li>
+        <li class="goodsat">11-AP</li>
+        <li class="oldsat">11-AQ</li>
+        <li class="goodsat">11-AR</li>
+        <li class="oldsat">11-AS</li>
+        <li class="oldsat">11-AT</li>
+        <li class="goodsat">11-AU</li>
+        <li class="goodsat">11-AV</li>
+        <li class="goodsat">11-AW</li>
+        <li class="goodsat">11-AX</li>
+        <li class="oldsat">11-AY</li>
+        <li class="oldsat">11-AZ</li>
+        <li class="goodsat">11-BA</li>
+        <li class="goodsat">11-BB</li>
+        <li class="goodsat">11-BC</li>
+        <li class="oldsat">11-BD</li>
+        <li class="goodsat">11-BE</li>
+        <li class="oldsat">11-BF</li>
+        <li class="goodsat">11-BG</li>
+        <li class="goodsat">11-BH</li>
+        <li class="goodsat">11-BJ</li>
+        <li class="goodsat">11-BK</li>
+        <li class="goodsat">12-B</li>
+        <li class="goodsat">12-C</li>
+        <li class="goodsat">12-D</li>
+        <li class="goodsat">12-E</li>
+        <li class="goodsat">12-F</li>
+        <li class="goodsat">12-G</li>
+        <li class="goodsat">12-H</li>
+        <li class="goodsat">12-J</li>
+        <li class="goodsat">12-K</li>
+        <li class="goodsat">12-L</li>
+        <li class="goodsat">12-M</li>
+        <li class="goodsat">12-N</li>
+        <li class="goodsat">12-P</li>
+        <li class="oldsat">12-Q</li>
+        <li class="goodsat">12-R</li>
+        <li class="goodsat">12-S</li>
+        <li class="goodsat">12-T</li>
+        <li class="goodsat">12-U</li>
+        <li class="goodsat">12-V</li>
+        <li class="goodsat">12-W</li>
+        <li class="oldsat">12-X</li>
+        <li class="oldsat">12-Y</li>
+        <li class="goodsat">12-Z</li>
+        <li class="oldsat">12-AA</li>
+        <li class="goodsat">12-AB</li>
+        <li class="goodsat">12-AC</li>
+        <li class="goodsat">12-AD</li>
+        <li class="goodsat">12-AE</li>
+        <li class="goodsat">12-AF</li>
+        <li class="goodsat">12-AG</li>
+        <li class="goodsat">12-AH</li>
+        <li class="goodsat">12-AJ</li>
+        <li class="goodsat">12-AK</li>
+        <li class="oldsat">12-AL</li>
+        <li class="oldsat">12-AM</li>
+        <li class="oldsat">12-AN</li>
+        <li class="oldsat">12-AP</li>
+        <li class="oldsat">12-AQ</li>
+        <li class="oldsat">12-AR</li>
+        <li class="oldsat">12-AS</li>
+        <li class="oldsat">12-AT</li>
+        <li class="goodsat">12-AU</li>
+        <li class="goodsat">12-AV</li>
+        <li class="goodsat">12-AW</li>
+        <li class="goodsat">12-AX</li>
+        <li class="goodsat">12-AY</li>
+        <li class="goodsat">12-AZ</li>
+        <li class="goodsat">12-BA</li>
+        <li class="oldsat">12-BB</li>
+        <li class="oldsat">12-BC</li>
+        <li class="oldsat">12-BD</li>
+        <li class="oldsat">12-BE</li>
+        <li class="oldsat">12-BF</li>
+        <li class="oldsat">12-BG</li>
+        <li class="goodsat">12-BH</li>
+        <li class="oldsat">12-BJ</li>
+        <li class="oldsat">12-BK</li>
+        <li class="goodsat">12-BL</li>
+        <li class="goodsat">12-BM</li>
+        <li class="goodsat">13-A</li>
+        <li class="goodsat">13-B</li>
+        <li class="goodsat">13-C</li>
+        <li class="goodsat">13-D</li>
+        <li class="goodsat">13-E</li>
+        <li class="goodsat">13-F</li>
+        <li class="goodsat">13-G</li>
+        <li class="goodsat">13-H</li>
+        <li class="oldsat">13-J</li>
+        <li class="oldsat">13-K</li>
+        <li class="goodsat">13-L</li>
+        <li class="goodsat">13-M</li>
+        <li class="oldsat">13-N</li>
+        <li class="goodsat">13-P</li>
+        <li class="goodsat">13-Q</li>
+        <li class="goodsat">13-R</li>
+        <li class="goodsat">13-S</li>
+        <li class="goodsat">13-T</li>
+        <li class="goodsat">13-U</li>
+        <li class="oldsat">13-V</li>
+        <li class="oldsat">13-W</li>
+        <li class="oldsat">13-X</li>
+        <li class="oldsat">13-Y</li>
+        <li class="oldsat">13-Z</li>
+        <li class="goodsat">13-AA</li>
+        <li class="oldsat">13-AB</li>
+        <li class="oldsat">13-AC</li>
+        <li class="oldsat">13-AD</li>
+        <li class="oldsat">13-AE</li>
+        <li class="oldsat">13-AF</li>
+        <li class="oldsat">13-AG</li>
+        <li class="oldsat">13-AH</li>
+        <li class="oldsat">13-AJ</li>
+        <li class="oldsat">13-AK</li>
+        <li class="oldsat">13-AL</li>
+        <li class="oldsat">13-AM</li>
+        <li class="goodsat">13-AN</li>
+        <li class="oldsat">13-AP</li>
+        <li class="oldsat">13-AQ</li>
+        <li class="oldsat">13-AR</li>
+        <li class="goodsat">13-AS</li>
+        <li class="oldsat">13-AT</li>
+        <li class="oldsat">13-AU</li>
+        <li class="oldsat">13-AV</li>
+        <li class="oldsat">13-AW</li>
+        <li class="oldsat">13-AX</li>
+        <li class="oldsat">13-AY</li>
+        <li class="oldsat">13-AZ</li>
+        <li class="oldsat">13-BA</li>
+        <li class="oldsat">13-BB</li>
+        <li class="oldsat">13-BC</li>
+        <li class="goodsat">13-BD</li>
+        <li class="oldsat">13-BE</li>
+        <li class="oldsat">13-BF</li>
+        <li class="oldsat">13-BG</li>
+        <li class="oldsat">13-BH</li>
+        <li class="oldsat">13-BJ</li>
+        <li class="oldsat">13-BK</li>
+        <li class="oldsat">13-BL</li>
+        <li class="oldsat">13-BM</li>
+        <li class="oldsat">14-B</li>
+        <li class="oldsat">14-C</li>
+        <li class="goodsat">14-D</li>
+        <li class="oldsat">14-E</li>
+        <li class="oldsat">14-F</li>
+        <li class="oldsat">14-G</li>
+        <li class="oldsat">14-H</li>
+        <li class="oldsat">14-J</li>
+        <li class="oldsat">14-K</li>
+        <li class="goodsat">14-L</li>
+        <li class="goodsat">14-M</li>
+        <li class="goodsat">14-N</li>
+        <li class="goodsat">14-P</li>
+        <li class="oldsat">14-Q</li>
+        <li class="goodsat">14-R</li>
+        <li class="goodsat">14-S</li>
+        <li class="oldsat">14-T</li>
+        <li class="goodsat">14-U</li>
+        <li class="goodsat">14-V</li>
+        <li class="oldsat">14-W</li>
+        <li class="oldsat">14-X</li>
+        <li class="goodsat">14-Y</li>
+        <li class="oldsat">14-Z</li>
+        <li class="oldsat">14-AA</li>
+        <li class="goodsat">14-AB</li>
+        <li class="oldsat">14-AC</li>
+        <li class="goodsat">14-AD</li>
+        <li class="oldsat">14-AE</li>
+        <li class="oldsat">14-AF</li>
+        <li class="goodsat">14-AG</li>
+        <li class="oldsat">14-AH</li>
+        <li class="oldsat">14-AJ</li>
+        <li class="oldsat">14-AK</li>
+        <li class="oldsat">14-AL</li>
+        <li class="goodsat">14-AM</li>
+        <li class="oldsat">14-AN</li>
+        <li class="oldsat">14-AP</li>
+        <li class="oldsat">14-AQ</li>
+        <li class="goodsat">14-AR</li>
+        <li class="goodsat">14-AS</li>
+        <li class="oldsat">14-AT</li>
+        <li class="oldsat">14-AU</li>
+        <li class="oldsat">14-AV</li>
+        <li class="oldsat">14-AW</li>
+        <li class="oldsat">14-AX</li>
+        <li class="goodsat">14-AY</li>
+        <li class="oldsat">14-AZ</li>
+        <li class="goodsat">14-BA</li>
+        <li class="oldsat">14-BB</li>
+        <li class="oldsat">14-BC</li>
+        <li class="oldsat">14-BD</li>
+        <li class="goodsat">14-BE</li>
+        <li class="oldsat">14-BF</li>
+        <li class="oldsat">14-BG</li>
+        <li class="goodsat">14-BH</li>
+        <li class="oldsat">14-BJ</li>
+        <li class="oldsat">14-BK</li>
+        <li class="oldsat">14-BL</li>
+        <li class="oldsat">14-BM</li>
+        <li class="oldsat">15-A</li>
+        <li class="oldsat">15-B</li>
+        <li class="oldsat">15-C</li>
+        <li class="oldsat">15-D</li>
+        <li class="oldsat">15-E</li>
+        <li class="oldsat">15-F</li>
+        <li class="oldsat">15-G</li>
+        <li class="oldsat">15-H</li>
+        <li class="oldsat">15-J</li>
+        <li class="oldsat">15-K</li>
+        <li class="oldsat">15-L</li>
+        <li class="oldsat">15-N</li>
+        <li class="oldsat">15-P</li>
+        <li class="oldsat">15-Q</li>
+        <li class="oldsat">15-R</li>
+        <li class="oldsat">15-S</li>
+        <li class="oldsat">15-T</li>
+        <li class="oldsat">15-U</li>
+        <li class="oldsat">15-V</li>
+        <li class="goodsat">15-W</li>
+        <li class="goodsat">15-X</li>
+        <li class="goodsat">15-Y</li>
+        <li class="goodsat">15-Z</li>
+        <li class="goodsat">15-AA</li>
+        <li class="goodsat">15-AB</li>
+        <li class="goodsat">15-AC</li>
+        <li class="goodsat">15-AD</li>
+        <li class="goodsat">15-AE</li>
+        <li class="goodsat">15-AF</li>
+        <li class="goodsat">15-AG</li>
+        <li class="goodsat">15-AH</li>
+        <li class="goodsat">15-AJ</li>
+        <li class="goodsat">15-AK</li>
+        <li class="goodsat">15-AL</li>
+        <li class="goodsat">15-AM</li>
+        <li class="goodsat">15-AN</li>
+        <li class="goodsat">15-AP</li>
+        <li class="goodsat">15-AQ</li>
+        <li class="oldsat">15-AS</li>
+        <li class="oldsat">15-AT</li>
+        <li class="oldsat">15-AU</li>
+        <li class="oldsat">15-AV</li>
+        <li class="oldsat">15-AW</li>
+        <li class="oldsat">15-AX</li>
+        <li class="oldsat">15-AY</li>
+        <li class="oldsat">15-AZ</li>
+        <li class="oldsat">15-BA</li>
+        <li class="oldsat">15-BB</li>
+        <li class="oldsat">15-BC</li>
+        <li class="oldsat">15-BD</li>
+        <li class="oldsat">15-BE</li>
+        <li class="oldsat">15-BF</li>
+        <li class="oldsat">15-BG</li>
+        <li class="oldsat">15-BH</li>
+        <li class="oldsat">15-BJ</li>
+        <li class="oldsat">15-BK</li>
+        <li class="oldsat">15-BL</li>
+        <li class="goodsat">15-BM</li>
+        <li class="deadsat">1-AC</li>
+        <li class="deadsat">4-N</li>
+        <li class="deadsat">1-BK</li>
+        <li class="deadsat">1-AA</li>
+        <li class="deadsat">1-BC</li>
+        <li class="deadsat">1-U</li>
+        <li class="deadsat">1-R</li>
+        <li class="deadsat">3-BD</li>
+        <li class="deadsat">4-M</li>
+        <li class="deadsat">1-Z</li>
+        <li class="deadsat">1-BL</li>
+        <li class="deadsat">1-BM</li>
+        <li class="deadsat">1-AT</li>
+        <li class="deadsat">5-AK</li>
+        <li class="deadsat">1-G</li>
+        <li class="deadsat">1-E</li>
+        <li class="deadsat">3-AL</li>
+        <li class="deadsat">1-AX</li>
+        <li class="deadsat">1-H</li>
+        <li class="deadsat">1-AU</li>
+        <li class="deadsat">1-C</li>
+        <li class="deadsat">1-AR</li>
+        <li class="deadsat">1-BH</li>
+        <li class="deadsat">3-AY</li>
+        <li class="deadsat">1-M</li>
+        <li class="deadsat">1-AN</li>
+        <li class="deadsat">1-AF</li>
+        <li class="deadsat">2-AJ</li>
+        <li class="deadsat">1-A</li>
+        <li class="deadsat">1-AV</li>
+        <li class="deadsat">1-B</li>
+        <li class="deadsat">1-W</li>
+        <li class="deadsat">1-BF</li>
+        <li class="deadsat">6-D</li>
+        <li class="deadsat">1-AG</li>
+        <li class="deadsat">1-V</li>
+        <li class="deadsat">1-AJ</li>
+        <li class="deadsat">1-AM</li>
+        <li class="deadsat">6-AB</li>
+        <li class="deadsat">1-J</li>
+        <li class="deadsat">1-AD</li>
+        <li class="deadsat">1-S</li>
+        <li class="deadsat">1-BB</li>
+        <li class="deadsat">1-P</li>
+        <li class="deadsat">1-AP</li>
+        <li class="deadsat">1-K</li>
+        <li class="deadsat">1-AH</li>
+        <li class="deadsat">1-AB</li>
+        <li class="deadsat">1-BJ</li>
+        <li class="deadsat">1-AE</li>
+        <li class="deadsat">1-AL</li>
+        <li class="deadsat">1-BA</li>
+        <li class="deadsat">1-X</li>
+        <li class="deadsat">1-N</li>
+        <li class="deadsat">1-L</li>
+        <li class="deadsat">8-A</li>
+      </ul>
+    </div>
+    <div id="showing_off" style="display: none">
+      <h1>Showing [<a href="" onclick="return tog_showing();">+</a>]</h1>
+    </div>
+    <ul id="grounds">
+      Ground stations:
+      <li class="goodsat">North Bend, WA</li>
+      <li class="goodsat">Conrad, MT</li>
+      <li class="goodsat">Merrillan, WI</li>
+      <li class="goodsat">Greenville, PA</li>
+      <li class="goodsat">Redmond, WA</li>
+      <li class="goodsat">Hawthorne, CA</li>
+      <li class="goodsat">Brewster, WA</li>
+      <li class="goodsat">Loring, ME</li>
+      <li class="goodsat">Kalama, WA</li>
+      <li class="goodsat">Arbuckle, CA</li>
+      <li class="goodsat">Beekmantown, NY</li>
+      <li class="goodsat">Charleston, OR</li>
+      <li class="goodsat">Coalville, UT</li>
+      <li class="goodsat">Panaca, NV</li>
+      <li class="goodsat">Boca Chica, TX</li>
+      <li class="goodsat">McGregor, TX</li>
+      <li class="goodsat">Litchfield, CT</li>
+      <li class="goodsat">Warren, MO</li>
+      <li class="goodsat">Nemaha, NE</li>
+      <li class="goodsat">Manistique, MI</li>
+    </ul>
+
+    <canvas id="quakeCanvas" width="1080" height="630"></canvas>
+
+    <div class="modal" id="modal2">
+      <div
+        class="modal-dialog"
+        style="background: white; color: black; min-width: 300px"
+      >
+        <header class="modal-header">
+          <b>Persistent settings</b>
+          <button class="close-modal" aria-label="close modal" data-close="">
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="padding-top: 0px">
+          <pre>  Launches: <select name="launch" id="settings.launch" style="font-size:1.2em">
+                <option value="all">all</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+</select><br>
+
+      Show: <select name="show" id="settings.show" style="font-size:1.2em">
+                <option value="any">any</option>
+                <option value="declining">declining</option>
+                <option value="rising">rising</option>
+                <option value="stored">stored</option>
+                <option value="active">active</option>
+                <option value="faults">faults</option>
+</select><br>
+
+ Day/Night: <input type="checkbox" name="redwhite" id="settings.redwhite"><br>
+
+     Rings: <input type="checkbox" name="showrings" id="settings.showrings"><br>
+
+Projection: <select name="projection" id="settings.projection" style="font-size:1.2em">
+                <option value="orthographic">orthographic</option>
+                <option value="mercator">mercator</option>
+</select><br><br>
+
+<center><button value="save" style="font-size:1.5em" onclick="save_settings(); close_modal(document.getElementById('modal2'));">save</button>  <button value="reset" style="font-size:1.5em">reset</button></center></pre>
+        </section>
+        <!--footer class="modal-footer"-->
+        <!--/footer-->
+      </div>
+    </div>
+
+    <div class="modal" id="modal1">
+      <div class="modal-dialog" style="background: white; color: black">
+        <header class="modal-header">
+          <b>Map key</b>
+          <button class="close-modal" aria-label="close modal" data-close="">
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="padding-top: 0px">
+          <p style="margin-top: 0px">
+            yellow dots are future base stations.<br /><br />Red (in darkness)
+            or White (in daylight) dots are the satellites.<br />Circles are
+            ground radio visibility at &gt;=45 degree elevation above horizon
+          </p>
+          <p>
+            click on sat labels on the left to see a pop up altitude history
+            graph.
+          </p>
+          <p>Click on base station names AT RIGHT - to pop map window</p>
+        </section>
+        <footer class="modal-footer"></footer>
+      </div>
+    </div>
+
+    <div id="controls">
+      <div>
+        <input
+          id="slider"
+          type="range"
+          min="0"
+          max="100"
+          step="0.1"
+          value="0"
+        />
+      </div>
+      <div>
+        <span id="date">Jan 01 1970 00:00 UTC</span>
+      </div>
+    </div>
+
+    <div id="footer" style="z-index: 999">
+      <small
+        ><a href="/history.html">history</a> · Data:
+        <a href="https://en.wikipedia.org/wiki/Space_track">space track</a> ·
+        <a href="/about.html">about</a> ·
+        <a href="#" class="open-modal" data-open="modal1">key</a></small
+      >
+    </div>
+
+    <div
+      id="myDiv"
+      style="
+        position: fixed;
+        bottom: 6px;
+        right: 6px;
+        width: 350px;
+        height: 150px;
+      "
+    ></div>
+
+    <script>
+      var s = window.localStorage.getItem("settings");
+      var settings;
+
+      if (s) {
+        settings = JSON.parse(s);
+        if (!("redwhite" in settings)) {
+          settings.redwhite = true;
+        }
+        if (!("showrings" in settings)) {
+          settings.showrings = true;
+        }
+      } else {
+        settings = new Object();
+        settings.launch = "any";
+        settings.show = "all";
+        settings.projection = "orthographic";
+        settings.redwhite = true;
+        settings.showrings = true;
+        window.localStorage.setItem("settings", JSON.stringify(settings));
+      }
+      if (settings.show == "all") {
+        settings.show = "any";
+      }
+      if (settings.launch == "any") {
+        settings.launch = "all";
+      }
+
+      var boot = setInterval(function () {
+        if (ppp) {
+          ppp.setProjection(settings.projection);
+          ppp.setSettings(settings);
+          clearTimeout(boot);
+        }
+      }, 100);
+
+      function save_settings() {
+        settings.launch = document.getElementById("settings.launch").value;
+        settings.show = document.getElementById("settings.show").value;
+        settings.projection = document.getElementById(
+          "settings.projection"
+        ).value;
+        settings.showrings = document.getElementById("settings.showrings")
+          .checked
+          ? true
+          : false;
+        settings.redwhite = document.getElementById("settings.redwhite").checked
+          ? true
+          : false;
+
+        window.localStorage.setItem("settings", JSON.stringify(settings));
+        ppp.setProjection(settings.projection);
+        ppp.setSettings(settings);
+        document.getElementById("magnitudes").innerHTML = "";
+        last_fetched = 0;
+      }
+
+      function tog_showing() {
+        var i = document.getElementById("showing_on");
+        var j = document.getElementById("showing_off");
+        if (i.style.display == "none") {
+          i.style.display = "";
+          j.style.display = "none";
+        } else {
+          j.style.display = "";
+          i.style.display = "none";
+        }
+        return false;
+      }
+      function close_modal(m) {
+        m.classList.remove(isVisible);
+      }
+
+      const openEls = document.querySelectorAll("[data-open]");
+      const closeEls = document.querySelectorAll("[data-close]");
+      const isVisible = "is-visible";
+
+      for (const el of openEls) {
+        el.addEventListener("click", function () {
+          const modalId = this.dataset.open;
+          document.getElementById(modalId).classList.add(isVisible);
+          if (modalId == "modal2") {
+            document.getElementById("settings.launch").value = settings.launch;
+            document.getElementById("settings.show").value = settings.show;
+            document.getElementById("settings.projection").value =
+              settings.projection;
+            document.getElementById(
+              "settings.showrings"
+            ).checked = settings.showrings ? "checked" : "";
+            document.getElementById(
+              "settings.redwhite"
+            ).checked = settings.redwhite ? "checked" : "";
+          }
+        });
+      }
+
+      for (const el of closeEls) {
+        el.addEventListener("click", function () {
+          this.parentElement.parentElement.parentElement.classList.remove(
+            isVisible
+          );
+        });
+      }
+
+      document.addEventListener("click", (e) => {
+        if (e.target == document.querySelector(".modal.is-visible")) {
+          document
+            .querySelector(".modal.is-visible")
+            .classList.remove(isVisible);
+        }
+      });
+
+      // if we press the ESC
+      document.addEventListener("keyup", (e) => {
+        if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+          document
+            .querySelector(".modal.is-visible")
+            .classList.remove(isVisible);
+        }
+      });
+
+      function popkey() {}
+
+      // disable touch move/zoom
+      function preventBehavior(e) {
+        e.preventDefault();
+      }
+      document.addEventListener("touchmove", preventBehavior, {
+        passive: false,
+      });
+
+      function getHiddenProp() {
+        var prefixes = ["webkit", "moz", "ms", "o"];
+        if ("hidden" in document) return "hidden";
+        for (var i = 0; i < prefixes.length; i++) {
+          if (prefixes[i] + "Hidden" in document) return prefixes[i] + "Hidden";
+        }
+        return null;
+      }
+
+      // refresh data on vis change if necessary
+      var visProp = getHiddenProp();
+      if (visProp) {
+        var evtname = visProp.replace(/[H|h]idden/, "") + "visibilitychange";
+        document.addEventListener(evtname, visChange);
+      }
+
+      function isHidden() {
+        var prop = getHiddenProp();
+        if (!prop) return false;
+        return document[prop];
+      }
+
+      function visChange() {
+        if (isHidden()) console.log("tab hiddn");
+        else console.log("tab visible");
+      }
+    </script>
+
+    <script
+      id="quakejs"
+      data-satfile="/starposA.json"
+      type="text/javascript"
+      src="https://satellitemap.space/examples/quake/quake.js?6"
+    ></script>
+
+    <div class="tooltip" style="opacity: 0"></div>
+  </body>
+</html>

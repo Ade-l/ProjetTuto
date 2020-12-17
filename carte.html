@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Carte de la couverture 5G dans le monde - nPerf.com</title>
+
+    <!-- Global META -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta name="msapplication-TileColor" content="#232323" />
+    <meta
+      name="msapplication-TileImage"
+      content="/favicon//mstile-144x144.png"
+    />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=YES" />
+    <!-- HeadLink -->
+    <link
+      href="//cdn.nperf.com/js/map/leaflet/leaflet.css"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//cdn.nperf.com/css/lib/bootstrap.min.css?v=2.3.2"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//cdn.nperf.com/css/lib/bootstrap-responsive.min.css?v=2.3.2"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//cdn.nperf.com/css/boo-allinone.min.css?v=1.2.1"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+      defer="1"
+    />
+    <link
+      href="//cdn.nperf.com/css/nPerf-extension.css?v=20190826-0"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+      defer="1"
+    />
+    <link
+      href="//cdn.nperf.com/css/nPerf-global.css?v=20191218"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+      defer="1"
+    />
+    <link
+      href="//cdn.nperf.com/www-css/style8.css?v=1.2.51"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!--[if IE
+      ]><link
+        href="&#x2F;&#x2F;cdn.nperf.com&#x2F;www-css&#x2F;ieOnly.css&#x3F;v&#x3D;1.0"
+        media="screen"
+        rel="stylesheet"
+        type="text&#x2F;css"
+    /><![endif]-->
+    <!-- HeadStyle -->
+  </head>
+  <body class="">
+    <!--------------------NAV-------------------------------->
+
+    <div id="globalContent">
+      <div class="partWhiteBlue mapWrapper" style="border-radius: 16px">
+        <div class="main-map">
+          <div id="contentMap" class="modeNormal">
+            <div class="span4 mapSearch">
+              <ul id="Search">
+                <li>
+                  <a>
+                    <div class="input-append span4">
+                      <input
+                        id="map-search"
+                        class="searchText span3"
+                        type="text"
+                      />
+                      <button class="btn btnSearchMap span1" type="button">
+                        <i class="npicn-search search-icon"></i>
+                        <img
+                          class="loading-icon"
+                          src="//cdn.nperf.com/www-img/restart.png"
+                          alt="porn"
+                        />
+                      </button>
+                    </div>
+                  </a>
+                  <ul class="span3" id="mapSearchResults"></ul>
+                </li>
+              </ul>
+            </div>
+            <div
+              id="map-canvas"
+              style="z-index: 0; position: relative; outline: none"
+              class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag"
+              tabindex="0"
+            >
+              <div
+                class="leaflet-pane leaflet-map-pane"
+                style="transform: translate3d(14.4047px, 143.8px, 0px)"
+              >
+                <div class="leaflet-pane leaflet-tile-pane">
+                  <div class="leaflet-layer" style="z-index: 1; opacity: 1">
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="
+                        z-index: 16;
+                        transform: translate3d(392px, -103px, 0px) scale(0.25);
+                      "
+                    ></div>
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="
+                        z-index: 18;
+                        transform: translate3d(0px, 0px, 0px) scale(1);
+                      "
+                    >
+                      <img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/1/1"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/2/1"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/1/0"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/1/2"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/2/0"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/2/2"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/0/1"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/3/1"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/0/0"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/0/2"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/3/0"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/3/2"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/1/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/1/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/2/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/2/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/0/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/0/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/3/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/2/3/3"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="leaflet-layer" style="z-index: 1; opacity: 1">
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="
+                        z-index: 16;
+                        transform: translate3d(545px, -30px, 0px) scale(0.25);
+                      "
+                    ></div>
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="
+                        z-index: 18;
+                        transform: translate3d(0px, 0px, 0px) scale(1);
+                      "
+                    >
+                      <img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-1-1.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-1-2.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-0-1.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-2-1.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-0-2.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-2-2.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-1-0.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-1-3.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(358px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-0-0.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-2-0.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-0-3.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(102px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-2-3.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(614px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-1.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-1.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, -89px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-2.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-2.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, 167px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-0.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-0.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, -345px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-3.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(-154px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      /><img
+                        alt=""
+                        role="presentation"
+                        src="https://app.nperf.com/nr-map-2-3-3.png"
+                        class="leaflet-tile leaflet-tile-loaded"
+                        style="
+                          width: 256px;
+                          height: 256px;
+                          transform: translate3d(870px, 423px, 0px);
+                          opacity: 1;
+                        "
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="leaflet-pane leaflet-shadow-pane"></div>
+                <div class="leaflet-pane leaflet-overlay-pane"></div>
+                <div class="leaflet-pane leaflet-marker-pane"></div>
+                <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                <div class="leaflet-pane leaflet-popup-pane"></div>
+                <div
+                  class="leaflet-proxy leaflet-zoom-animated"
+                  style="
+                    transform: translate3d(366.095px, 501.2px, 0px) scale(2);
+                  "
+                ></div>
+              </div>
+              <div class="leaflet-control-container">
+                <div class="leaflet-top leaflet-left">
+                  <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                    <a
+                      class="leaflet-control-zoom-in"
+                      href="#"
+                      title="Zoom in"
+                      role="button"
+                      aria-label="Zoom in"
+                      >+</a
+                    ><a
+                      class="leaflet-control-zoom-out leaflet-disabled"
+                      href="#"
+                      title="Zoom out"
+                      role="button"
+                      aria-label="Zoom out"
+                      >−</a
+                    >
+                  </div>
+                </div>
+                <div class="leaflet-top leaflet-right"></div>
+                <div class="leaflet-bottom leaflet-left"></div>
+                <div class="leaflet-bottom leaflet-right">
+                  <div class="leaflet-control-attribution leaflet-control">
+                    <a
+                      href="http://leafletjs.com"
+                      title="A JS library for interactive maps"
+                      >Leaflet</a
+                    >
+                    | © Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO,
+                    USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance
+                    Survey, Esri Japan, METI, Esri China (Hong Kong), ©
+                    OpenStreetMap contributors, and the GIS User Community
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--End Main-Map-->
+        </div>
+        <!--End Content-->
+      </div>
+      <!--End PartWhiteBlue-->
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- JS Placed at the end of the document so the pages load faster -->
+    <!-- ============================================================= -->
+    <script src="//cdn.nperf.com/js/lib/jquery-1.11.2.min.js?v=1.11.2"></script>
+    <script src="//cdn.nperf.com/js/lib/jquery-ui.min.js?v=1.11.3"></script>
+    <script src="//cdn.nperf.com/plugins/jstz/jstz-1.0.4.min.js"></script>
+    <script src="//cdn.nperf.com/js/app/jquery.serialize-object.min.js"></script>
+    <script src="//cdn.nperf.com/js/lib/bootstrap/bootstrap.min.js?v=2.3.2"></script>
+    <script src="//cdn.nperf.com/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="//cdn.nperf.com/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+    <script src="//cdn.nperf.com/plugins/bootstrap-select/js/bootstrap-select.min.js?v=1.6.5"></script>
+    <script src="//cdn.nperf.com/plugins/pl-form/uniform/jquery.uniform.min.js"></script>
+    <script src="//cdn.nperf.com/plugins/pl-system-info/notyfy/jquery.notyfy.js"></script>
+    <script src="//cdn.nperf.com/js/app/dynamic-modal.js"></script>
+    <script src="//cdn.nperf.com/js/lib/xregexp-all-min.js"></script>
+    <script>
+      //
+
+      $("select:not(.selectpicker)").uniform();
+      $("input:checkbox").uniform();
+
+      //
+    </script>
+    <script src="//cdn.nperf.com/js/map/leaflet/leaflet.js"></script>
+    <script>
+      //
+
+      var ajaxCountLoader = $.ajax();
+      var mapNetworksData = "";
+      var userMoved = false;
+      var ispNames = {};
+      var geoInfo = "";
+      var bgLayer;
+      var stdBgLayer;
+
+      var nominatim_map_init = {
+        minZoom: 2,
+        maxZoom: 16,
+        zoom: 2,
+        lat: 20,
+        lon: 0,
+        tile_url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        tile_attribution:
+          '<span class="copyright">&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors</span>',
+      };
+      var nominatim_results = [];
+      var nominatim_nPerf_tile_url =
+        "https://app.nperf.com/nr-map-{z}-{x}-{y}.png";
+
+      var map = new L.map("map-canvas", {
+        attributionControl:
+          nominatim_map_init.tile_attribution &&
+          nominatim_map_init.tile_attribution.length,
+        scrollWheelZoom: true, // !L.Browser.touch,
+        touchZoom: false,
+        minZoom: nominatim_map_init.minZoom,
+        maxZoom: nominatim_map_init.maxZoom,
+      });
+
+      //Esri Tiles
+      stdBgLayer = bgLayer = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        {
+          attribution:
+            "&copy; Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), &copy; OpenStreetMap contributors, and the GIS User Community",
+          noWrap: false,
+        }
+      );
+      bgLayer.addTo(map);
+
+      //nPerf Tiles
+      var nPerfTileLayer = L.tileLayer(nominatim_nPerf_tile_url, {
+        noWrap: false,
+      });
+      nPerfTileLayer.addTo(map);
+
+      map.setView(
+        [nominatim_map_init.lat, nominatim_map_init.lon],
+        nominatim_map_init.zoom
+      );
+
+      var HERE_hybridDay = L.tileLayer(
+        "https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/{type}/{mapID}/hybrid.day/{z}/{x}/{y}/{size}/{format}?app_id={app_id}&app_code={app_code}&lg={language}",
+        {
+          attribution:
+            'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+          subdomains: "1234",
+          mapID: "newest",
+          app_id: "kb7Cww5v9cjUNLr3Eq2H",
+          app_code: "BiAFL5MXJuhw6F7PQE9Lrw",
+          base: "aerial",
+          maxZoom: 20,
+          type: "maptile",
+          language: "eng",
+          format: "png8",
+          size: "256",
+        }
+      );
+
+      $(document).ready(function () {
+        $(".toStandard").on("click", function () {
+          nPerfTileLayer.addTo(map);
+          map.removeLayer(HERE_hybridDay);
+          $(this).hide();
+          $(".toSatellite").show();
+          resetTilesOverlay(true);
+        });
+        $(".toSatellite").on("click", function () {
+          HERE_hybridDay.addTo(map);
+          map.removeLayer(nPerfTileLayer);
+          $(this).hide();
+          $(".toStandard").show();
+          resetTilesOverlay(true);
+        });
+      });
+
+      var currentCountry = "fr";
+
+      hasChanged = false;
+      function boundSelectCountryData() {
+        $("#countrySelector li").off("click");
+        $("#countrySelector li").on("click", function (event) {
+          country = $(this).attr("value");
+          currentCountry = country;
+
+          hasChanged = true;
+          $(".menu-country button p").html($(this).html());
+
+          ajaxLoadSelectNetworkData(country);
+
+          if (bgLayer !== undefined) bgLayer.remove();
+          if (country == "ma") {
+            bgLayer = L.tileLayer(
+              "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+              {
+                attribution:
+                  "&copy; Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), &copy; OpenStreetMap contributors, and the GIS User Community",
+                noWrap: true,
+              }
+            );
+            bgLayer.addTo(map);
+          } else {
+            bgLayer = stdBgLayer;
+            bgLayer.addTo(map);
+          }
+
+          //Zoom on map and center to the selected <country></country>
+          minLat = $(this).data("minlat");
+          maxLat = $(this).data("maxlat");
+          minLng = $(this).data("minlng");
+          maxLng = $(this).data("maxlng");
+
+          map.fitBounds([
+            [minLat, minLng],
+            [maxLat, maxLng],
+          ]);
+          geoInfo = "-";
+        });
+      }
+
+      $(".switchTiles").on("click", function () {
+        mapType = $(this).data("switch");
+        if ($(this).hasClass("active")) {
+        } else {
+          $(".switchTiles").removeClass("active");
+          $(this).addClass("active");
+
+          setNetworks();
+
+          resetTilesOverlay(true);
+        }
+      });
+
+      var typingTimer;
+      var doneTypingInterval = 200;
+      var input = $("#map-search");
+
+      //on keyup, start the countdown
+      input.on("input propertychange paste", function (e) {
+        clearTimeout(typingTimer);
+        if (e.which == 13) {
+          $("#mapSearchResults").find(".mapSearchItem").eq(0).trigger("click");
+        } else {
+          if ($.trim($(this).val()).length >= 2) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+          }
+        }
+      });
+
+      //on keydown, clear the countdown
+      input.on("keydown", function () {
+        clearTimeout(typingTimer);
+      });
+
+      $(".btnSearchMap").on("click", function () {
+        doneTyping();
+      });
+
+      //do something
+      function doneTyping() {
+        $(".btnSearchMap").addClass("loading");
+        $.ajax({
+          type: "POST",
+          url: "/fr/map/ajax-map-autocomplete",
+          cache: false,
+          data: JSON.stringify({
+            keywords: input.val(),
+            langSelected: currentCountry,
+          }),
+          contentType: "application/json",
+          success: function (response) {
+            if (response.Data.status == "OK") {
+              $("#mapSearchResults").html("");
+
+              var maxRows = 5;
+              var nbRows = 0;
+              var allowedTypes = [
+                "locality",
+                "postcode",
+                "city",
+                "residential",
+                "track",
+                "road",
+                "street",
+                "primary",
+                "secondary",
+                "tertiary",
+                "administrative",
+              ];
+
+              var checkName = [];
+
+              $.each(response.Data.nominatim, function (index, item) {
+                if (
+                  $.inArray(item.type, allowedTypes) >= 0 &&
+                  nbRows < maxRows
+                ) {
+                  var display_name = item.display_name.split(",");
+                  var addressArray = [];
+
+                  if (item.address.country_code) {
+                    switch (item.address.country_code) {
+                      case "fr":
+                        addressArray = [display_name[0], item.address.postcode];
+                        break;
+                      default:
+                        addressArray = [
+                          display_name[0],
+                          item.address.postcode,
+                          item.address.state,
+                        ];
+                        break;
+                    }
+                  }
+
+                  addressArray.clean(undefined);
+
+                  var onePlaceName = addressArray.join(", ");
+                  var onePlace = buildSearchResult(
+                    onePlaceName,
+                    item.boundingbox[0],
+                    item.boundingbox[1],
+                    item.boundingbox[2],
+                    item.boundingbox[3],
+                    item.type
+                  );
+                  if ($.inArray(onePlaceName, checkName) == -1) {
+                    checkName.push(onePlaceName);
+                    $("#mapSearchResults").append(onePlace);
+                    nbRows++;
+                  }
+                }
+              });
+
+              $(".mapSearch #Search > li").addClass("visible");
+            } else {
+              $("#mapSearchResults").html("");
+              //                    notyfy({layout: 'center', type: 'error', text: '<strong>Error</strong>'});
+            }
+            setTimeout(function () {
+              $(".btnSearchMap").removeClass("loading");
+            }, 300);
+          },
+        });
+      }
+
+      function buildSearchResult(name, lat1, lat2, lng1, lng2, type) {
+        return (
+          '<li title="' +
+          name +
+          '" data-name="' +
+          name +
+          '" class="mapSearchItem ' +
+          type +
+          '" data-lat1="' +
+          lat1 +
+          '" data-lat2="' +
+          lat2 +
+          '" data-lng1="' +
+          lng1 +
+          '" data-lng2="' +
+          lng2 +
+          '"><a><img src="//cdn.nperf.com/www-img/map/Autoroute.png" class="npicn-location-pin location-autoroute" /><img src="//cdn.nperf.com/www-img/map/Region.png" class="npicn-location-pin location-region" /><img src="//cdn.nperf.com/www-img/map/Route.png" class="npicn-location-pin location-route" /><img src="//cdn.nperf.com/www-img/map/rue-avenue.png" class="npicn-location-pin location-rue-avenue" /><img src="//cdn.nperf.com/www-img/map/Ville.png" class="npicn-location-pin location-ville" /><p>' +
+          name +
+          "</p></a></li>"
+        );
+      }
+
+      $("#mapSearchResults").on("click", ".mapSearchItem", function () {
+        $(".mapSearch #Search > li").removeClass("visible");
+
+        var lat1 = parseFloat($(this).data("lat1"));
+        var lat2 = parseFloat($(this).data("lat2"));
+        var lng1 = parseFloat($(this).data("lng1"));
+        var lng2 = parseFloat($(this).data("lng2"));
+
+        map.fitBounds([
+          [lat1, lng1],
+          [lat2, lng2],
+        ]);
+
+        input.val($(this).data("name"));
+      });
+
+      $(".switchFullscreen").on("click", function () {
+        if ($(this).hasClass("npicn-fullscreen2-exit")) {
+          $(this).addClass("npicn-fullscreen2");
+          $(this).removeClass("npicn-fullscreen2-exit");
+          switchToFullscreen(false);
+        } else {
+          $(this).addClass("npicn-fullscreen2-exit");
+          $(this).removeClass("npicn-fullscreen2");
+          switchToFullscreen(true);
+        }
+      });
+
+      map.on("zoomlevelschange", function () {
+        //getTilesSignalCount(false);
+      });
+      map.on("moveend", function () {
+        $(".mapSearch #Search > li").removeClass("visible");
+        userMoved = true;
+        //getTilesSignalCount(false);
+      });
+      map.on("zoomend", function () {
+        //getTilesSignalCount(false);
+      });
+      map.on("click", function () {
+        $(".mapSearch #Search > li").removeClass("visible");
+      });
+
+      function resetTilesOverlay(triggerNoData) {
+        map.removeLayer(nPerfTileLayer);
+
+        nPerfTileLayer = L.tileLayer(
+          "https://app.nperf.com/nr-map-{z}-{x}-{y}.png",
+          {
+            noWrap: true, // otherwise we end up with click coordinates like latitude -728
+          }
+        );
+        map.addLayer(nPerfTileLayer);
+
+        // getTilesSignalCount(triggerNoData);
+      }
+      /*
+            function getTilesSignalCount(triggerNoData){
+
+                if(ajaxCountLoader.readyState != 0 && ajaxCountLoader.readyState != 4){
+                    ajaxCountLoader.abort();
+                }
+
+                var lat0 = map.getBounds().getNorthEast().lat;
+                var lng1 = map.getBounds().getNorthEast().lng;
+                var lat1 = map.getBounds().getSouthWest().lat;
+                var lng0 = map.getBounds().getSouthWest().lng;
+                var zoom = map.getZoom();
+
+
+                ajaxCountLoader = $.ajax({
+                    type: 'POST',
+                    url: '/fr/map/get-count-signal-nr',
+                    data: JSON.stringify({swLng:lng0,neLat:lat0,neLng:lng1,swLat:lat1,zoom:zoom}),
+                    cache: false,
+                    contentType: 'application/json',
+                    success: function(response) {
+                        if(response.Status == 'OK') {
+                            $('.mesured-force').html(response.Data);
+                            $('.mesured-date').html(response.Date);
+                            $('.lastupdate-date').html(response.LastUpdate);
+                        }
+                        else if(response.Status == 'NODATA'){
+                            if(triggerNoData){
+                                //notyfy({layout: 'center', type: 'information', text: '<strong>Error:</strong> '+response.Error});
+                            }
+                            $('.mesured-force').html(0);
+                            $('.mesured-date').html(response.Error);
+                            $('.lastupdate-date').html(response.Error);
+                        }
+                        else{
+                            //error loading
+                            notyfy({layout: 'center', type: 'error', text: '<strong>Error:</strong> '+response.Error});
+                        }
+                    }
+                });
+            }
+            */
+
+      function browserFullscreen(action) {
+        var elem = document.documentElement;
+        if (action) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            /* Firefox */
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) {
+            /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) {
+            /* IE/Edge */
+            elem.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            /* Firefox */
+            document.mozCancelFullScreen();
+          } else if (document.webkitExitFullscreen) {
+            /* Chrome, Safari and Opera */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            /* IE/Edge */
+            document.msExitFullscreen();
+          }
+        }
+      }
+
+      document.addEventListener("fullscreenchange", exitHandler);
+      document.addEventListener("webkitfullscreenchange", exitHandler);
+      document.addEventListener("mozfullscreenchange", exitHandler);
+      document.addEventListener("MSFullscreenChange", exitHandler);
+
+      function exitHandler() {
+        if (
+          !document.fullscreenElement &&
+          !document.webkitIsFullScreen &&
+          !document.mozFullScreen &&
+          !document.msFullscreenElement
+        ) {
+          $(".switchFullscreen").addClass("npicn-fullscreen2");
+          $(".switchFullscreen").removeClass("npicn-fullscreen2-exit");
+          switchToFullscreen(false);
+        }
+      }
+
+      function switchToFullscreen(switchMode) {
+        if (switchMode) {
+          browserFullscreen(true);
+          $("#contentMap").addClass("modeFullscreen5g");
+          $("#contentMap").removeClass("modeNormal");
+        } else {
+          browserFullscreen(false);
+          $("#contentMap").removeClass("modeFullscreen5g");
+          $("#contentMap").addClass("modeNormal");
+        }
+        //reset viewport size
+        map.invalidateSize();
+
+        //go for count
+        getTilesSignalCount(true);
+      }
+
+      //$('.gm-style-cc').css('display','none');
+      //switch active non-active on hover
+      var switchTile = false;
+      $(".switchTiles")
+        .on("mouseenter", function () {
+          if (!$(this).hasClass("active")) {
+            switchTile = $(".switchTiles.active");
+            switchTile.removeClass("active");
+          }
+        })
+        .on("mouseleave", function () {
+          if (!$(this).hasClass("active")) {
+            switchTile.addClass("active");
+          }
+        });
+
+      Array.prototype.clean = function (deleteValue) {
+        for (var i = 0; i < this.length; i++) {
+          if (this[i] == deleteValue) {
+            this.splice(i, 1);
+            i--;
+          }
+        }
+        return this;
+      };
+
+      //
+    </script>
+  </body>
+</html>
