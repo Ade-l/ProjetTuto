@@ -1,193 +1,455 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <!-- Bootstrap CSS -->
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="scripts/style.css" />
-    <link rel="stylesheet" href="scripts/style-light-page.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="scripts/style.css"/>
+    <link rel="stylesheet" href="scripts/style-light-page.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      href="img/Faviconico/favicon-light.ico"
-      type="image/x-icon"
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
     />
     <link
-      rel="icon"
-      href="img/Faviconico/favicon-light.ico"
-      type="image/x-icon"
+            rel="shortcut icon"
+            href="img/Faviconico/favicon-light.ico"
+            type="image/x-icon"
+    />
+    <link
+            rel="icon"
+            href="img/Faviconico/favicon-light.ico"
+            type="image/x-icon"
     />
 
     <title>Google Loon</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg fixed-top nav-bg">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top nav-bg">
         <div class="container justify-content-center">
-          <a class="navbar-brand d-flex w-50 mr-auto" href="index.php">
-            <img
-              src="img/svg/logo/Future-Blue.svg"
-              alt="Logo"
-              style="width: 100px"
-            />
-          </a>
+            <a class="navbar-brand d-flex w-50 mr-auto" href="index.php">
+                <img
+                        src="img/svg/logo/Future-Blue.svg"
+                        alt="Logo"
+                        style="width: 100px"
+                />
+            </a>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNavDropdown"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="5G.html">5G</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Télécommunications Satelitaires
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <a class="dropdown-item" href="starlink.html">Starlink</a>
-                  <a class="dropdown-item" href="blue-origin.html"
-                    >Blue Origin</a
-                  >
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Loon.html">Projet Loon</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html"
-                  ><span class="span-button">Contact</span></a
-                >
-              </li>
-            </ul>
-          </div>
+            <div
+                    class="collapse navbar-collapse justify-content-end"
+                    id="navbarNavDropdown"
+            >
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="5G.html">5G</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                        >
+                            Télécommunications Satelitaires
+                        </a>
+                        <div
+                                class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="navbarDropdownMenuLink"
+                        >
+                            <a class="dropdown-item" href="starlink.html">Starlink</a>
+                            <a class="dropdown-item" href="blue-origin.html"
+                            >Blue Origin</a
+                            >
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Loon.html">Projet Loon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html"
+                        ><span class="span-button">Contact</span></a
+                        >
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-    </header>
+    </nav>
+</header>
 
-    <main>
-      <div class="container">
+<main>
+    <div class="container">
+        <h1 class="display-1">Projet Loon</h1>
 
-        
-        <h1 class="display-1 ">Projet Loon</h1>
-        
+        <!-- Début - Caractéristiques -->
         <div class="margin-10">
-          <!-- Project One Row-->
-          <div class="row justify-content-center no-gutters">
-              <div class="col-lg-6 image-container">
-                <img class="img-fluid" src="img/Loon/Project-Loon-Feature.jpg" alt="" /></div>
-              <div class="col-lg-6 order-lg-first">
-                  <div class="bg-black text-center h-100 project">
-                      <div class="d-flex h-100">
-                          <div class="project-text w-100 my-auto text-center text-lg-right">
-                              <h2>Caractéristiques</h2>
-                              <p class="mb-0">Un Ballon mesure 15 mètres de long et lévite grâce à l'hélium</p>
-                              <hr class="d-none d-lg-block mb-0 mr-0" />
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+            <!-- Début - Dirigeant du projet -->
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6 image-container">
+                    <img
+                            class="img-fluid responsive-img"
+                            src="img/Loon/Serguei-Brin.jpg"
+                            alt="Sarguei Brin"
+                    />
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div
+                                    class="project-text w-100 my-auto text-center text-lg-left"
+                            >
+                                <h2>Dirigeant du projet</h2>
+                                <p class="mb-0">
+                                    Le projet Loon est dirigé par Sergey Brin, l'un des
+                                    co-fondateurs de Google. Il a été initié par la société X,
+                                    anciennement Google X Lab ou Google X qui est une
+                                    entreprise américaine semi-secrète appartenant
+                                    anciennement à Google et désormais filiale de Alphabet
+                                    Inc.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 ml-0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin - Dirigeant du projet -->
 
+            <!-- Début - But du projet -->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6 image-container">
+                    <img
+                            class="img-fluid responsive-img"
+                            src="img/Loon/alphabet_project_loon_puerto_rico_1.jpg"
+                            alt=""
+                    />
+                </div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div
+                                    class="project-text w-100 my-auto text-center text-lg-right"
+                            >
+                                <h2>But du projet</h2>
+                                <p class="mb-0">
+                                    Présenté en 2013 et est aidé par le CNES depuis 2014. Il
+                                    vise à développer l’accès à l’Internet dans les zones
+                                    blanches (sans connexion) du monde entier en faisant
+                                    flotter des ballons, au-dessus des voies aériennes
+                                    empruntées par les avions.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin - But du projet -->
 
-        <!-- <hr /> -->
-        <div class="row margin-5">
-          <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- Début - Débit -->
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6 image-container">
+                    <img
+                            class="img-fluid responsive-img"
+                            src="img/Loon/07loon-sub-mediumSquareAt3X.jpg"
+                            alt=""
+                    />
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div
+                                    class="project-text w-100 my-auto text-center text-lg-left"
+                            >
+                                <h2>Débit</h2>
+                                <p class="mb-0">
+                                    Au Kenya, Alphabet revendique un débit descendant moyen de
+                                    18,9 Mb/s et un débit montant de 4.75 Mb/s.
+                                </p>
+                                <p class="mb-0">
+                                    La connexion peut être relayée dans un rayon de 40
+                                    kilomètres soit 5000 km², connectant 1000 utilisateurs
+                                    simultanément et une latence moyenne de 19ms.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 ml-0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin - Débit -->
 
-              <p>Le projet Loon est dirigé par Sergey Brin, l'un des cofondateurs de Google. Il a été initié par la société X, anciennement Google X Lab ou Google X qui est une entreprise américaine semi-secrète appartenant anciennement à Google et désormais filiale de Alphabet Inc.</p>
+            <!-- Début - Caractéristiques -->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6 image-container">
+                    <img
+                            class="img-fluid responsive-img"
+                            src="img/Loon/Project-Loon-Feature.jpg"
+                            alt=""
+                    />
+                </div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div
+                                    class="project-text w-100 my-auto text-center text-lg-right"
+                            >
+                                <h2>Caractéristiques</h2>
+                                <p class="mb-0">
+                                    Un Ballon mesure 15 mètres de diamètre et flotte grâce à
+                                    l'hélium
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin - Caractéristiques -->
+        </div>
 
-              <p>Ce projet a été présenté en 2013 et est aidé par le CNES depuis 2014. Il vise à développer l’accès à l’Internet dans les zones blanches (sans connexion) du monde entier en faisant flotter des ballons de 15 mètres de diamètre dans la stratosphère, au-dessus des voies aériennes empruntées par les avions.</p>
-              
-              <h2 class="section-heading">Question économie</h2>
-              
-              <p>
-                  Selon une étude provenant de la Cecs (College of ENGINEERING & COMPUTER SCIENCE),
-                  Le coût de construction d'un ballon Google Loon est estimé à 17870$
-                  Le coût total de fonctionnement d’un ballon Google Loon sur 5 ans est estimé à 40 000$.
-                  Le projet semble être rentable à partir d’une densité d’environ 5.8 utilisateurs/km2
-              </p>
+        <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto">
+                <!-- Début - Question économique -->
+                <div>
+                    <h2 class="section-heading margin-h2">Question économique</h2>
+                    <p>
+                        Selon une étude provenant de la Cecs (College of ENGINEERING &
+                        COMPUTER SCIENCE), le coût de construction d'un ballon Google
+                        Loon est estimé à 17870$. Le coût total de fonctionnement d’un
+                        ballon Google Loon sur 5 ans est estimé à 40 000$. Le projet
+                        semble être rentable à partir d’une densité d'utilisateurs
+                        d’environ 6 utilisateurs par km².
+                    </p>
 
-              <p>
-                  Le modèle économique de Google Loon est de proposer leurs services de transmission Internet avec les ballons aux opérateurs locaux.
-              </p>
+                    <p>
+                        Le modèle économique de Google Loon semble vouloir proposer
+                        leurs services de transmission Internet aux opérateurs locaux.
+                    </p>
 
-              <div class="image-container">
-                  <img class="img-fluid" src="img\Loon\loon-alphabet-google.jpg" alt="Demo Image">
-                  <span class="caption text-muted">Lancement d'un ballon Google Loon au Kenya</span>
-              </div>
+                    <div class="image-container col-6 mx-auto">
+                        <img
+                                class="img-fluid"
+                                src="img/Loon/safaricom.jpg"
+                                alt="Opérateurs internet"
+                        />
+                        <span class="caption text-muted"
+                        >Exemple d'opérateur pouvant utiliser les ballons</span
+                        >
+                    </div>
 
-              <p>
-                  Au Kenya, Alphabet revendique un débit descendant moyen de 18,9 Mb/s,  un débit montant de 4.75 Mb/s. La société revendique aussi une connexion pouvant être relayée sur un diamètre de 80 kilomètres soit 5000 km², connectant 1000 utilisateurs simultanément et une latence moyenne de 19ms, soit 0.019s.
-                  Pour économiser de l’énergie, Google Loon utilise la technologie Beamforming décrite dans la partie 5G.
-              </p>
+                    <p>
+                        En avril 2019, le projet Loon a levé des fonds auprès de la
+                        société SoftBank qui s’est portée acheteuse d’une partie des
+                        actions de l’entreprise à hauteur de 125 M$. Ce partenariat à
+                        long terme comprend une collaboration technique et commerciale.
+                        L'accord donne également à Loon la possibilité d'investir
+                        réciproquement 125 millions de dollars dans HAPS Mobile à
+                        l'avenir.
+                    </p>
 
-          </div>
-      </div>
-    </main>
+                    <p>
+                        Google sera doublement gagnant si le projet réussi puisqu’il
+                        obtiendra deux sources de revenus avec, d’une part, les
+                        abonnements à internet et, d'autre part, les publicités générées
+                        par ses services comme son moteur de recherche à partir
+                        d’utilisateurs qui ne possédaient pas internet auparavant.
+                    </p>
+                    <!-- Fin - Question économie -->
 
-    <!-- Footer -->
-    <footer class="page-footer font-small blue sticky-bottom">
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">
+                    <!-- Début - Communication et popularité -->
+                    <h2 class="section-heading margin-h2">
+                        Communication et popularité du projet
+                    </h2>
+
+                    <p>
+                        A l’inverse de la société StarLink, la société Google loon est
+                        discrète quant au partage d’informations relatives à elle-même.
+                        En effet, les porteparoles de l'entreprise n'évoquent que très
+                        rarement les réussites et projets en cours de développement.
+                    </p>
+
+                    <p>
+                        En conséquence de quoi, il faut, d’une part, se méfier des
+                        informations non vérifiables communiquées par certains journaux,
+                        s’appuyant sur des rumeurs même si elles peuvent s'avérer
+                        véridiques et, d’autre part, que la popularité inférieur de
+                        Google Loon face aux autres projets peut être causé par le
+                        manque de communication de la part de la société.
+                    </p>
+
+                    <div class="image-container">
+                        <img
+                                class="img-fluid"
+                                src="img/Loon/loon-alphabet-google.jpg"
+                                alt="Ballon Google Loon"
+                        />
+                        <span class="caption text-muted"
+                        >Lancement d'un ballon Google Loon au Kenya</span
+                        >
+                    </div>
+                    <!-- Fin - Communication et popularité -->
+
+                    <!-- Début - question juridique -->
+                    <h2 class="section-heading margin-h2">Question juridiques</h2>
+
+                    <p>
+                        Pour survoler une zone avec ses ballons, Google Loon doit
+                        obtenir les autorisations des pays gérants ces zones. Ainsi, la
+                        société, à l’instar de Starlink et Blue Origin, doit respecter
+                        certaines conditions pouvant différer d’un pays à l’autre comme
+                        :
+                    </p>
+
+                    <ul>
+                        <li>
+                            obtention des feux verts de l’<span
+                                title="Union Internationale des Télécommunications"
+                        >ITU</span
+                        >
+                            ;
+                        </li>
+
+                        <li>
+                            les normes internationales relatives aux ballons libres sans
+                            pilote fixées par l’<span
+                                title="Organisation de l’aviation civile internationale"
+                        >OACI</span
+                        >
+                            ;
+                        </li>
+
+                        <li>s'associer à un opérateur télécom local ;</li>
+
+                        <li>prévoir un plan de rapatriement des ballons ;</li>
+
+                        <li>survoler les zones aériennes réservées aux avions ;</li>
+                    </ul>
+
+                    <p>
+                        Plusieurs pays ont donc accordé une autorisation à Google Loon
+                        pour le déploiement d’Internet sur leur pays comme Porto Rico
+                        aux Etats-Unis en 2017, de la part de la FCC, à la suite du
+                        passage de l'ouragan Maria, pour pallier les dommages des
+                        infrastructures de télécommunications en proposant un accès
+                        basique à Internet, à 100 000 personnes en novembre de cette
+                        année.
+                    </p>
+
+                    <div class="image-container">
+                        <img
+                                class="img-fluid"
+                                src="img/Loon/Ouragan-Maria.jpg"
+                                alt="Demo Image"
+                        />
+                        <p>
+                  <span class="caption text-muted"
+                  >Etat de Porto Rico après le passage de l'ouragan
+                    Maria</span
+                  >
+                        </p>
+                    </div>
+                </div>
+                <!-- Fin - question juridique -->
+
+                <!-- Début - Avantages -->
+                <div class="margin-3">
+                    <h2 class="section-heading margin-h2">Avantages</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success">
+                            facilement déployable après des catastrophes naturels
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            désenclavement numérique des zones blanches
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            grande portée de connexion avec un ballon (80 km selon Google
+                            Loon)
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            les ballons ne sont pas des déchets spatiaux et ne gênent ni
+                            les avions, ni les astronomes
+                        </li>
+                        <li class="list-group-item list-group-item-success">
+                            utilisation d’énergie renouvelable
+                        </li>
+                    </ul>
+                </div>
+                <!-- Fin - Avantages -->
+
+                <!-- Début - Inconvénients -->
+                <div class="margin-10">
+                    <h2 class="section-heading margin-h2">Inconvénients</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-danger">
+                            débit faible comparé aux alternatives disponibles sur le
+                            marché (Fibre, 4G via antenne terrestre) mais convenable pour
+                            certains usages
+                        </li>
+                        <li class="list-group-item list-group-item-danger">
+                            dépendance envers l'hélium pour la lévitation des ballons,
+                            risque de pénurie ;
+                        </li>
+                        <li class="list-group-item list-group-item-danger">
+                            les ballons ne peuvent voler que 187 jours au maximum
+                        </li>
+                    </ul>
+                </div>
+                <!-- Fin - Inconvénients -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue sticky-bottom">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
         © 2020 Copyright : Future Team
-      </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>
